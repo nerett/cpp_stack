@@ -135,18 +135,17 @@ void CStack::push( stk_element_t value, err_code* error_variable ) //есть к
 /*--------------------------FUNCTION----------------------------------------- */
 stk_element_t CStack::pop( err_code* error_variable ) //!TODO ошибка запроса нулевого элемента стека
 {
-/*
-	if( some_stack->N_element < 0 )
+
+	if( N_element_ < 0 )
 	{
 		return {};
 	}
 
-	if( some_stack->max_capacity < some_stack->N_element )
+	if( max_capacity_ < N_element_ )
 	{
-		error_output( error_variable, NO_ELEMENTS_TO_POP );
+		//error_output( error_variable, NO_ELEMENTS_TO_POP );
 		return {};
 	}
-*/
 
 	stk_element_t return_value = data_[N_element_]; //!TODO добавить сеттеры/геттеры и проверки на обращение к невыделенной памяти
 	data_[N_element_] = INT_POISON;

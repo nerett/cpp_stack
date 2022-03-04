@@ -18,9 +18,6 @@ class CStack
 
 		double up_resize_coeff_ = 0;
 		double down_resize_coeff_ = 0;
-		//double smoothing_downsize_coeff = 0;
-
-		//bool is_initialized = false; //! static
 
 	private:
 		//делать ли геттеры и сеттеры дл внутренних нужд?

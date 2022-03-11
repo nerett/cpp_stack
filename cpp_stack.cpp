@@ -5,12 +5,12 @@
 CStack::CStack( err_code* error_variable ):
 
 		max_capacity_ ( START_CAPACITY ), //!TODO size_t
-		N_element_ ( -1 ),
+		N_element_ ( START_N_ELEMENT ),
 
 		data_ ( new stk_element_t[max_capacity_ + DATA_ALLOCATION_OFFSET] {} ),
 
-		up_resize_coeff_ ( 1 ), //не будет вызывать ошибок и падений
-		down_resize_coeff_ ( 1 )
+		up_resize_coeff_ ( START_UP_RESIZE_COEFF ),
+		down_resize_coeff_ ( START_DOWN_RESIZE_COEFF )
 {
 	//some_stack->data = ( stk_element_t* )calloc( some_stack->max_capacity + 1 + N_CANARIES, sizeof( stk_element_t ) ); //я не знаю, почему, но все ошибки valgrind исчезли после +1
 
@@ -69,21 +69,21 @@ void CStack::resize( err_code* error_variable )
 /*--------------------------FUNCTION----------------------------------------- */
 void CStack::calc_upsize_coeff()
 {
-	up_resize_coeff_ = 2; //! HARDCODE
+	up_resize_coeff_ = DEFAULT_UP_RESIZE_COEFF; //! HARDCODE
 }
 
 
 /*--------------------------FUNCTION----------------------------------------- */
 void CStack::calc_downsize_coeff()
 {
-	down_resize_coeff_ = 0.5; //! HARDCODE
+	down_resize_coeff_ = DEFAULT_DOWN_RESIZE_COEFF; //! HARDCODE
 }
 
 
 /*--------------------------FUNCTION----------------------------------------- */
 double CStack::calc_smoothing_downsize_coeff()
 {
-	return 0.2; //! HARDCODE
+	return DEFAULT_SMOOTHING_DOWNSIZE_COEFF; //! HARDCODE
 }
 
 
@@ -110,13 +110,13 @@ void CStack::downsize( err_code* error_variable )
 /*--------------------------FUNCTION----------------------------------------- */
 void CStack::reallocate( err_code* error_variable ) //!TODO переписать в стиле C++
 {
-	stk_element_t* realloc_buffer = new stk_element_t[max_capacity_+1] {0};
+	stk_element_t* realloc_buffer = new stk_element_t[max_capacity_ + DATA_ALLOCATION_OFFSET] {0};
 	if( !realloc_buffer )
 	{
 		return;
 	}
 	
-	memcpy( realloc_buffer, data_, sizeof( stk_element_t ) * ( N_element_ + 1 ) );
+	memcpy( realloc_buffer, data_, sizeof( stk_element_t ) * ( N_element_ + N_TO_AMOUNT_OFFSET ) );
 	delete[] data_;
 
 	data_ = ( stk_element_t* )realloc_buffer;

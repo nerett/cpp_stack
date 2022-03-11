@@ -4,6 +4,9 @@
 int main()
 {
 	CStack test_stack;
+	stk_element_t value = 0;
+
+/*
 	test_stack.push( 15 );
 	test_stack.push( 14435 );
 	stk_element_t value = test_stack.pop();
@@ -22,6 +25,7 @@ int main()
 	printf( "value = %d\n", value );
 	value = test_stack.pop();
 	printf( "value = %d\n", value );
+*/
 
 	test_stack.push( 1 );
 	test_stack.push( 2 );
@@ -32,6 +36,7 @@ int main()
 	test_stack.push( 7 );
 	test_stack.push( 8 );
 	test_stack.push( 9 );
+	test_stack.push( 10 );
 
 	for( int i = 0; i < 15; i++ )
 	{
@@ -39,11 +44,12 @@ int main()
 		printf( "value = %d\n", value );
 	}
 
+/*
 	for( int i = 0; i < 100000; i++ )
 	{
 		test_stack.push( i );
 		printf( "i = %d\n", i );
 	}
-	
+*/	
 	return 0;
 }

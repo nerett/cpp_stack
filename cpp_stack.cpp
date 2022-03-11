@@ -118,7 +118,7 @@ void CStack::reallocate( err_code* error_variable ) //!TODO переписать
 		return;
 	}
 	
-	memcpy( realloc_buffer, data_, sizeof( stk_element_t ) * N_element_ );
+	memcpy( realloc_buffer, data_, sizeof( stk_element_t ) * ( N_element_ + 1 ) );
 
 	/*
 	for( int i = 0; i < N_element_; i++ ) //!TODO копирование нормальным методом

@@ -110,21 +110,22 @@ void CStack::downsize( err_code* error_variable )
 /*--------------------------FUNCTION----------------------------------------- */
 void CStack::reallocate( err_code* error_variable ) //!TODO переписать в стиле C++
 {
-printf( "reallocate\n" );
 	//void* realloc_buffer = ( stk_element_t* )realloc( data_, sizeof( stk_element_t ) * ( max_capacity_ + 1 ) );
 	stk_element_t* realloc_buffer = new stk_element_t[max_capacity_+1] {0};
-	//!TODO копирование нормальным методом
-	for( int i = 0; i < N_element_; i++ )
+
+	if( !realloc_buffer )
+	{
+		return;
+	}
+	
+	for( int i = 0; i < N_element_; i++ ) //!TODO копирование нормальным методом
 	{
 		realloc_buffer[i] = data_[i];
 	}
 
 	delete[] data_;
 
-	if( realloc_buffer != NULL )
-	{
-		data_ = ( stk_element_t* )realloc_buffer;
-	}
+	data_ = ( stk_element_t* )realloc_buffer;
 }
 
 

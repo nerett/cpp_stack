@@ -3,6 +3,7 @@
 
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "config.h"
 #include "error_processing.h"
 
@@ -31,6 +32,8 @@ class CStack
 		void upsize( err_code* error_variable = NULL );
 		void downsize( err_code* error_variable = NULL );
 		void reallocate( err_code* error_variable = NULL );
+
+		static stk_element_t* realloc( err_code* error_variable ); //замена realloc для стека
 
 	public:
 

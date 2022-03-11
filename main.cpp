@@ -38,6 +38,12 @@ int main()
 		value = test_stack.pop();
 		printf( "value = %d\n", value );
 	}
+
+	for( int i = 0; i < 100000; i++ )
+	{
+		test_stack.push( i );
+		printf( "i = %d\n", i );
+	}
 	
 	return 0;
 }
